@@ -146,4 +146,44 @@ INSERT INTO detalle_venta (id_venta, id_producto, cantidad, precio_unitario) VAL
 (14, 15, 1, 7200),
 (15, 2, 2, 2050);
 
+-- METODO DE PAGO
+INSERT INTO metodo_pago (nombre) VALUES
+('Efectivo'),
+('Tarjeta débito'),
+('Tarjeta crédito'),
+('Transferencia'),
+('Mercado Pago');
 
+-- ENVIO
+INSERT INTO envio (tipo) VALUES
+('Retiro en tienda'),
+('Envío estándar'),
+('Envío express');
+
+-- SUCURSAL
+INSERT INTO sucursal (nombre) VALUES
+('Sucursal Centro'),
+('Sucursal Norte'),
+('Sucursal Sur');
+
+-- DESCUENTO
+INSERT INTO descuento (porcentaje) VALUES
+(5),(10),(15),(20);
+
+-- MARCA
+INSERT INTO marca (nombre) VALUES
+('Royal Canin'),
+('Pedigree'),
+('Whiskas'),
+('Purina'),
+('Pro Plan');
+
+-- FACTURA
+INSERT INTO factura (id_venta) VALUES
+(1),(2),(3),(4),(5),(6),(7),(8),(9),(10),
+(11),(12),(13),(14),(15);
+
+-- HISTORIAL CLIENTE
+INSERT INTO cliente_historial (id_cliente) VALUES
+(1),(2),(3),(4),(5),(6),(7),(8),(9),(10),
+(11),(12),(13),(14),(15);
