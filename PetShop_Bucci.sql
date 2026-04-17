@@ -66,9 +66,8 @@ CREATE TABLE IF NOT EXISTS mascota (
         REFERENCES cliente(id_cliente)
 );
 
--- ========================
 -- Tabla Venta
--- ========================
+
 CREATE TABLE IF NOT EXISTS venta (
     id_venta INT AUTO_INCREMENT PRIMARY KEY,
     fecha DATE NOT NULL,
@@ -83,9 +82,8 @@ CREATE TABLE IF NOT EXISTS venta (
         REFERENCES empleado(id_empleado)
 );
 
--- ========================
 -- Tabla Detalle Venta
--- ========================
+
 CREATE TABLE IF NOT EXISTS detalle_venta (
     id_detalle INT AUTO_INCREMENT PRIMARY KEY,
     id_venta INT,
@@ -98,4 +96,60 @@ CREATE TABLE IF NOT EXISTS detalle_venta (
 
     FOREIGN KEY (id_producto)
         REFERENCES producto(id_producto)
+);
+
+-- Tabla Metodo Pago
+
+CREATE TABLE IF NOT EXISTS metodo_pago (
+    id_metodo INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50)
+);
+
+-- Tabla Envio
+
+CREATE TABLE IF NOT EXISTS envio (
+    id_envio INT AUTO_INCREMENT PRIMARY KEY,
+    tipo VARCHAR(50)
+);
+
+
+-- Tabla Sucursal
+
+CREATE TABLE IF NOT EXISTS sucursal (
+    id_sucursal INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50)
+);
+
+-- Tabla Factura
+
+CREATE TABLE IF NOT EXISTS factura (
+    id_factura INT AUTO_INCREMENT PRIMARY KEY,
+    id_venta INT,
+
+    FOREIGN KEY (id_venta)
+        REFERENCES venta(id_venta)
+);
+
+-- Tabla Descuento
+
+CREATE TABLE IF NOT EXISTS descuento (
+    id_descuento INT AUTO_INCREMENT PRIMARY KEY,
+    porcentaje INT
+);
+
+-- Tabla Marca
+
+CREATE TABLE IF NOT EXISTS marca (
+    id_marca INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50)
+);
+
+-- Tabla Historial Cliente
+
+CREATE TABLE IF NOT EXISTS cliente_historial (
+    id_historial INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT,
+
+    FOREIGN KEY (id_cliente)
+        REFERENCES cliente(id_cliente)
 );
