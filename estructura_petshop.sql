@@ -29,22 +29,40 @@ v.total
 FROM venta v
 JOIN empleado e ON v.id_empleado = e.id_empleado;
 
+-- VISTA 4
+CREATE VIEW vista_productos_mas_vendidos AS
+SELECT 
+    p.nombre,
+    SUM(dv.cantidad) AS total_vendido
+FROM detalle_venta dv
+JOIN producto p ON dv.id_producto = p.id_producto
+GROUP BY p.id_producto;
+
+-- VISTA 5
+CREATE VIEW vista_total_por_cliente AS
+SELECT 
+    c.nombre,
+    c.apellido,
+    SUM(v.total) AS total_gastado
+FROM cliente c
+JOIN venta v ON c.id_cliente = v.id_cliente
+GROUP BY c.id_cliente;
+
 -- FUNCION 1
 DELIMITER //
 
-CREATE FUNCTION total_gastado_cliente(id INT)
+CREATE FUNCTION total_gastado_cliente(p_id INT)
 RETURNS DECIMAL(10,2)
 DETERMINISTIC
 BEGIN
-DECLARE total DECIMAL(10,2);
+    DECLARE total_cliente DECIMAL(10,2);
 
-SELECT SUM(total)
-INTO total
-FROM venta
-WHERE id_cliente = id;
+    SELECT IFNULL(SUM(total), 0)
+    INTO total_cliente
+    FROM venta
+    WHERE id_cliente = p_id;
 
-RETURN total;
-
+    RETURN total_cliente;
 END //
 
 DELIMITER ;
